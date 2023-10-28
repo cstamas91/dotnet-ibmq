@@ -1,1 +1,15 @@
-image: mcr.microsoft.com/dotnet/sdk:8.0
+image: 
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Restore & Build
+    init: |
+      dotnet env-certs https
+      dotnet restore
+      dotnet build
+  - name: Run
+    command: dotnet run
+
+vscode:
+  extensions:
+    - muhammad-sammy.csharp
