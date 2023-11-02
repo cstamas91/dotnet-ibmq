@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsT.Dotnet.IbmQ.Tests", "Cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsT.Dotnet.IbmQ.Worker", "CsT.Dotnet.IbmQ.Worker\CsT.Dotnet.IbmQ.Worker.csproj", "{FE78B791-0B01-47EF-B6E4-633BA1ECD219}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsT.Dotnet.IbmQ.Core", "CsT.Dotnet.IbmQ.Core\CsT.Dotnet.IbmQ.Core.csproj", "{DED2BE79-86A6-40C3-9251-AA29213ED418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{FE78B791-0B01-47EF-B6E4-633BA1ECD219}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE78B791-0B01-47EF-B6E4-633BA1ECD219}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE78B791-0B01-47EF-B6E4-633BA1ECD219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED2BE79-86A6-40C3-9251-AA29213ED418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED2BE79-86A6-40C3-9251-AA29213ED418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED2BE79-86A6-40C3-9251-AA29213ED418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED2BE79-86A6-40C3-9251-AA29213ED418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

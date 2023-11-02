@@ -10,4 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CsT.Dotnet.IbmQ.Core\CsT.Dotnet.IbmQ.Core.csproj" />
+  </ItemGroup>
 </Project>

@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CsT.Dotnet.IbmQ.Core\CsT.Dotnet.IbmQ.Core.csproj" />
+  </ItemGroup>
+
 </Project>
