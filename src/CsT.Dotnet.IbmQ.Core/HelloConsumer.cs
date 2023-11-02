@@ -24,7 +24,7 @@ public class HelloConsumer
         ConnectionPropertyBuilder.SetConnectionProperties(_connectionFactory, _env);
         _connection = _connectionFactory.CreateConnection();
         _session = _connection.CreateSession(false, AcknowledgeMode.AutoAcknowledge);
-        _destination = _session.CreateTopic(_env.Conn.topic_name);
+        _destination = _session.CreateTopic(_env.Conn?.topic_name ?? "topic");
         _subscriber = _session.CreateConsumer(_destination);
     }
 

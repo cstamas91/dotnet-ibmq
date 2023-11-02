@@ -1,27 +1,29 @@
-﻿namespace CsT.Dotnet.IbmQ.Core;
+﻿using System.Text.Json;
+
+namespace CsT.Dotnet.IbmQ.Core;
 
 class Env
 {
     public class MQEndPoints
     {
-        public List<ConnVariables>? mq_endpoints;
+        public List<ConnVariables> mq_endpoints = new ();
     }
 
     public class ConnVariables
     {
-        public string host = null;
-        public string qmgr = null;
+        public string? host = null;
+        public string? qmgr = null;
         public int port = 0;
-        public string channel = null;
-        public string queue_name = null;
-        public string model_queue_name = null;
-        public string topic_name = null;
-        public string app_user = null;
-        public string app_password = null;
-        public string cipher_suite = null;
-        public string key_repository = null;
+        public string? channel = null;
+        public string? queue_name = null;
+        public string? model_queue_name = null;
+        public string? topic_name = null;
+        public string? app_user = null;
+        public string? app_password = null;
+        public string? cipher_suite = null;
+        public string? key_repository = null;
         public bool is_managed = true;
-        public void dump()
+        public void Dump()
         {
             Console.WriteLine("hostname {0} ", host);
             Console.WriteLine("port {0} ", port);
@@ -37,10 +39,10 @@ class Env
         }
     }
 
-    private MQEndPoints points = null;
-    private ConnVariables conn = null;
+    private MQEndPoints? points = null;
+    private ConnVariables? conn = null;
 
-    internal ConnVariables Conn { get => conn; set => conn = value; }
+    internal ConnVariables? Conn { get => conn; set => conn = value; }
 
     private bool AtLeast(int i)
     {
@@ -53,36 +55,38 @@ class Env
 
     public int NumberOfConnections()
     {
-        if (AtLeast(1))
+        if (AtLeast(1) && points != null && points.mq_endpoints != null)
         {
             return points.mq_endpoints.Count;
         }
+
         return 0;
     }
 
-    private ConnVariables EndPoint(int i)
+    private ConnVariables? EndPoint(int i)
     {
-        if (AtLeast(i))
+        if (AtLeast(i) && points != null && points.mq_endpoints != null)
         {
             return points.mq_endpoints[i];
         }
+
         return null;
     }
 
-    public IEnumerable<ConnVariables> GetEndpoints()
+    public IEnumerable<ConnVariables?> GetEndpoints()
     {
         int count = NumberOfConnections();
         for (int i = 0; i < count; i++)
         {
-            yield return points.mq_endpoints[i];
+            yield return points?.mq_endpoints?[i] ?? null;
         }
     }
 
     public string BuildConnectionString()
     {
-        List<string> connList = new List<string>();
+        List<string> connList = new();
 
-        if (AtLeast(1))
+        if (AtLeast(1) && points != null && points.mq_endpoints != null)
         {
             foreach (var c in points.mq_endpoints)
             {
@@ -105,17 +109,17 @@ class Env
         try
         {
             Console.WriteLine("Looking for file");
-            using (StreamReader r = new StreamReader("env.json"))
+            using (StreamReader r = new("env.json"))
             {
                 Console.WriteLine("File found");
                 string json = r.ReadToEnd();
 
-                points = JsonConvert.DeserializeObject<Env.MQEndPoints>(json);
+                points = JsonSerializer.Deserialize<Env.MQEndPoints>(json);
 
                 if (points != null && points.mq_endpoints != null && points.mq_endpoints.Count > 0)
                 {
                     Conn = points.mq_endpoints[0];
-                    Conn.dump();
+                    Conn.Dump();
                     isSet = true;
                 }
                 else

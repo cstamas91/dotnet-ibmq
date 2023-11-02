@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ibmmq:
+    image: icr.io/ibm-messaging/mq:9.3.2.0-r2
+    container_name: ibm_mq
+    environment:
+      LICENSE: accept
+      LOG_FORMAT: json
+      MQ_QMGR_NAME: testManager
+      MQ_ADMIN_PASSWORD: passw0rd
+
+    ports:
+      - "9443:9443"
+      - "1414:1414"

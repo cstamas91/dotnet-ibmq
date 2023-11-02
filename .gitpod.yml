@@ -7,11 +7,19 @@ tasks:
       dotnet env-certs https
       dotnet restore
       dotnet build
+      docker-compose pull
   - name: Run
-    command: dotnet run
+    command: | 
+      dotnet run
+      docker-compose up -d
+
+ports:
+  - port: 1414
+    onOpen: ignore
+  - port: 9443
+    onOpen: open-browser
 
 vscode:
   extensions:
     - muhammad-sammy.csharp
     - ms-dotnettools.vscode-dotnet-runtime
-    - ms-dotnettools.csdevkit
