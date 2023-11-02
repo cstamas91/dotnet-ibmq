@@ -1,10 +1,8 @@
 ﻿namespace CsT.Dotnet.IbmQ.Core;
 
-using Microsoft.Extensions.Logging;
-
 public class HelloConsumer
 {
-    private readonly ILogger<HelloConsumer> _logger;
+    private readonly Serilog.ILogger _logger;
     private readonly Env _env = new();
     private const int TIMEOUTTIME = 30000;
 
@@ -15,7 +13,7 @@ public class HelloConsumer
     private IDestination _destination;
     private IMessageConsumer _subscriber;
 
-    public HelloConsumer(ILogger<HelloConsumer> logger)
+    public HelloConsumer(Serilog.ILogger logger)
     {
         _logger = logger;
 
